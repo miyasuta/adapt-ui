@@ -6,6 +6,7 @@ declare module 'sap/ui/core/mvc/ControllerExtension' {
         static overrides: unknown;
         base: {
             getExtensionAPI(): API;
+            byId(id: string): any;
         }
     }
 }

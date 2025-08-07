@@ -116,6 +116,18 @@
                     "type": "ResponsiveTable"
                   }
                 }
+              },
+              "content": {
+                "header": {
+                  "actions": {
+                    "setVariant": {
+                      "press": ".extension.ns.adaptui.ext.controller.ListReportControllerExtension.setVariant",
+                      "visible": true,
+                      "enabled": true,
+                      "text": "Set Variant"
+                    }
+                  }
+                }
               }
             }
           }

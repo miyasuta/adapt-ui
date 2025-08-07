@@ -1,5 +1,7 @@
 import ControllerExtension from 'sap/ui/core/mvc/ControllerExtension';
 import ExtensionAPI from 'sap/fe/templates/ListReport/ExtensionAPI';
+import FilterBar from 'sap/fe/macros/filterBar/FilterBar';
+import VariantManagement from 'sap/m/VariantManagement';
 
 /**
  * @namespace ns.adaptui.ext.controller
@@ -20,11 +22,27 @@ export default class ListReportControllerExtension extends ControllerExtension<E
 
 		onBeforeRendering(this: ListReportControllerExtension) {
 			console.log('onBeforeRendering');
+			debugger;
 		},
 
 		onAfterRendering(this: ListReportControllerExtension) {
 			console.log('onAfterRendering');
 			
-		}
+		},
+
+	}
+	
+	setVariant(this: ListReportControllerExtension, oEvent: any) {
+		console.log("setVariant");
+		const vm = this.base.byId('ns.adaptui::BooksList--fe::PageVariantManagement-vm') as VariantManagement;
+		let variantId = '';
+		vm.setCurrentVariantKey(variantId);
 	}
 }
+
+// /**
+//  * Generated event handler.
+//  */
+// export function setVariant() {
+// 	console.log("setVariant");
+// }
