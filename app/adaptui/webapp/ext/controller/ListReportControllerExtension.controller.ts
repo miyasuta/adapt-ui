@@ -20,6 +20,11 @@ export default class ListReportControllerExtension extends ControllerExtension<E
 		},
 
 		onBeforeRendering(this: ListReportControllerExtension) {
+			console.log('onBeforeRendering');		
+		},
+
+		onAfterRendering(this: ListReportControllerExtension) {
+			console.log('onAfterRendering');
 			// check if standard variant is selected			
 			const starndardVariant = 'ns.adaptui::BooksList--fe::PageVariantManagement';
 			const vm = this.base.byId('ns.adaptui::BooksList--fe::PageVariantManagement-vm') as VariantManagement;
@@ -30,21 +35,20 @@ export default class ListReportControllerExtension extends ControllerExtension<E
 				if (params && params.variantId.length > 0) {
 					const variantId = params.variantId[0];				
 					vm.setCurrentVariantKey(variantId);
+					console.log('variant set');
 				}
 			}			
-		},
-
-		onAfterRendering(this: ListReportControllerExtension) {
-			console.log('onAfterRendering');
-			
 		},
 	}
 	
 	setVariant(this: ListReportControllerExtension, oEvent: any) {
 		console.log("setVariant");
 		const vm = this.base.byId('ns.adaptui::BooksList--fe::PageVariantManagement-vm') as VariantManagement;
-		let variantId = '';
-		vm.setCurrentVariantKey(variantId);
+		const params = this.base.getAppComponent().getComponentData()?.startupParameters
+		if (params && params.variantId.length > 0) {
+			const variantId = params.variantId[0];				
+			vm.setCurrentVariantKey(variantId);
+		}
 	}
 }
 

@@ -7,24 +7,40 @@
   "private": true,
   "dependencies": {
     "@sap/cds": "^9",
-    "express": "^4"
+    "express": "^4",
+    "@sap/xssec": "^4",
+    "@cap-js/hana": "^2"
   },
   "engines": {
     "node": ">=20"
   },
   "devDependencies": {
-    "@cap-js/sqlite": "^2",
     "@cap-js/cds-types": "^0.13.0",
+    "@cap-js/sqlite": "^2",
+    "@sap/cds-dk": ">=8",
     "cds-plugin-ui5": "^0.13.0"
   },
   "scripts": {
     "start": "cds-serve",
-    "watch-adaptui": "cds watch --open ns.adaptui/index.html?sap-ui-xx-viewCache=false --livereload false"
+    "watch-adaptui": "cds watch --open ns.adaptui/index.html?sap-ui-xx-viewCache=false --livereload false",
+    "build": "mbt build -t gen --mtar mta.tar",
+    "deploy": "cf deploy gen/mta.tar -f"
   },
   "workspaces": [
     "app/*"
   ],
   "sapux": [
     "app/adaptui"
-  ]
+  ],
+  "cds": {
+    "requires": {
+      "[production]": {
+        "auth": "xsuaa",
+        "db": "hana",
+        "destinations": true,
+        "html5-runtime": true,
+        "workzone": true
+      }
+    }
+  }
 }
