@@ -36,11 +36,11 @@
     "requires": {
       "[production]": {
         "auth": "xsuaa",
-        "db": "hana",
-        "destinations": true,
-        "html5-runtime": true,
-        "workzone": true
-      }
+        "db": "hana"
+      },
+      "destinations": true,
+      "html5-runtime": true,
+      "workzone": true
     }
   }
 }

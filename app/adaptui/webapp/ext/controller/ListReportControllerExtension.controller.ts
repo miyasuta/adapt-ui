@@ -1,6 +1,7 @@
 import ControllerExtension from 'sap/ui/core/mvc/ControllerExtension';
 import ExtensionAPI from 'sap/fe/templates/ListReport/ExtensionAPI';
 import VariantManagement from 'sap/m/VariantManagement';
+import Context from 'sap/ui/model/odata/v4/Context';
 
 /**
  * @namespace ns.adaptui.ext.controller
@@ -26,26 +27,44 @@ export default class ListReportControllerExtension extends ControllerExtension<E
 		onAfterRendering(this: ListReportControllerExtension) {
 			console.log('onAfterRendering');
 			// check if standard variant is selected			
-			const starndardVariant = 'ns.adaptui::BooksList--fe::PageVariantManagement';
-			const vm = this.base.byId('ns.adaptui::BooksList--fe::PageVariantManagement-vm') as VariantManagement;
+			// const starndardVariant = 'ns.adaptui::BooksList--fe::PageVariantManagement';
+			// const vm = this.base.byId('ns.adaptui::BooksList--fe::PageVariantManagement-vm') as VariantManagement;
 
-			// if variant id is provided in startup parameters, set it as current variant
-			if (vm.getSelectedKey() === starndardVariant) {
-				const params = this.base.getAppComponent().getComponentData()?.startupParameters
-				if (params && params.variantId.length > 0) {
-					const variantId = params.variantId[0];				
-					vm.setCurrentVariantKey(variantId);
-					console.log('variant set');
-				}
-			}			
+			// // if variant id is provided in startup parameters, set it as current variant
+			// if (vm.getSelectedKey() === starndardVariant) {
+			// 	const params = this.base.getAppComponent().getComponentData()?.startupParameters
+			// 	if (params && params.variantId?.length > 0) {
+			// 		const variantId = params.variantId[0];				
+			// 		vm.setCurrentVariantKey(variantId);
+			// 		console.log('variant set');
+			// 	}
+			// }			
 		},
+
+		routing: {
+			onAfterBinding() {
+				console.log('onAfterBinding');
+				const starndardVariant = 'ns.adaptui::BooksList--fe::PageVariantManagement';
+				const vm = this.base.byId('ns.adaptui::BooksList--fe::PageVariantManagement-vm') as VariantManagement;
+
+				// if variant id is provided in startup parameters, set it as current variant
+				if (vm.getSelectedKey() === starndardVariant) {
+					const params = this.base.getAppComponent().getComponentData()?.startupParameters
+					if (params && params.variantId?.length > 0) {
+						const variantId = params.variantId[0];				
+						vm.setCurrentVariantKey(variantId);
+						console.log('variant set');
+					}
+				}
+			}
+		}
 	}
 	
 	setVariant(this: ListReportControllerExtension, oEvent: any) {
 		console.log("setVariant");
 		const vm = this.base.byId('ns.adaptui::BooksList--fe::PageVariantManagement-vm') as VariantManagement;
 		const params = this.base.getAppComponent().getComponentData()?.startupParameters
-		if (params && params.variantId.length > 0) {
+		if (params && params.variantId?.length > 0) {
 			const variantId = params.variantId[0];				
 			vm.setCurrentVariantKey(variantId);
 		}

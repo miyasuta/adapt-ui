@@ -23,16 +23,33 @@ sap.ui.define(["sap/ui/core/mvc/ControllerExtension"], function (ControllerExten
       onAfterRendering() {
         console.log('onAfterRendering');
         // check if standard variant is selected			
-        const starndardVariant = 'ns.adaptui::BooksList--fe::PageVariantManagement';
-        const vm = this.base.byId('ns.adaptui::BooksList--fe::PageVariantManagement-vm');
+        // const starndardVariant = 'ns.adaptui::BooksList--fe::PageVariantManagement';
+        // const vm = this.base.byId('ns.adaptui::BooksList--fe::PageVariantManagement-vm') as VariantManagement;
 
-        // if variant id is provided in startup parameters, set it as current variant
-        if (vm.getSelectedKey() === starndardVariant) {
-          const params = this.base.getAppComponent().getComponentData()?.startupParameters;
-          if (params && params.variantId.length > 0) {
-            const variantId = params.variantId[0];
-            vm.setCurrentVariantKey(variantId);
-            console.log('variant set');
+        // // if variant id is provided in startup parameters, set it as current variant
+        // if (vm.getSelectedKey() === starndardVariant) {
+        // 	const params = this.base.getAppComponent().getComponentData()?.startupParameters
+        // 	if (params && params.variantId?.length > 0) {
+        // 		const variantId = params.variantId[0];				
+        // 		vm.setCurrentVariantKey(variantId);
+        // 		console.log('variant set');
+        // 	}
+        // }			
+      },
+      routing: {
+        onAfterBinding() {
+          console.log('onAfterBinding');
+          const starndardVariant = 'ns.adaptui::BooksList--fe::PageVariantManagement';
+          const vm = this.base.byId('ns.adaptui::BooksList--fe::PageVariantManagement-vm');
+
+          // if variant id is provided in startup parameters, set it as current variant
+          if (vm.getSelectedKey() === starndardVariant) {
+            const params = this.base.getAppComponent().getComponentData()?.startupParameters;
+            if (params && params.variantId?.length > 0) {
+              const variantId = params.variantId[0];
+              vm.setCurrentVariantKey(variantId);
+              console.log('variant set');
+            }
           }
         }
       }
@@ -41,7 +58,7 @@ sap.ui.define(["sap/ui/core/mvc/ControllerExtension"], function (ControllerExten
       console.log("setVariant");
       const vm = this.base.byId('ns.adaptui::BooksList--fe::PageVariantManagement-vm');
       const params = this.base.getAppComponent().getComponentData()?.startupParameters;
-      if (params && params.variantId.length > 0) {
+      if (params && params.variantId?.length > 0) {
         const variantId = params.variantId[0];
         vm.setCurrentVariantKey(variantId);
       }

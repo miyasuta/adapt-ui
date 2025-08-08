@@ -19,8 +19,7 @@
       "./node_modules/@types",
       "./node_modules/@sapui5/types",
       "../../node_modules/@types",
-      "../../node_modules/@sapui5/types",
-      "./webapp/ext/controller"
+      "../../node_modules/@sapui5/types"
     ]
   },
   "include": [
