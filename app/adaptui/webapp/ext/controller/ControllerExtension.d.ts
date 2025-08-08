@@ -1,3 +1,5 @@
+import AppComponent from "sap/fe/core/AppComponent";
+
 /**
  * Helper to be able to define how to get the page specific extension API when writing a controller extension.
  */
@@ -7,6 +9,7 @@ declare module 'sap/ui/core/mvc/ControllerExtension' {
         base: {
             getExtensionAPI(): API;
             byId(id: string): any;
+            getAppComponent(): AppComponent;
         }
     }
 }
